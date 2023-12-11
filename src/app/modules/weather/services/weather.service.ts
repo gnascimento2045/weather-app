@@ -13,10 +13,8 @@ export class WeatherService {
 
   getWeatherDatas(cityName: string):Observable<any>{
     return this.http.get(
-      'https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&mode=json&appid=${this.apiKey}',
+      `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&mode=json&appid=${this.apiKey}`,
       {}
-    );
-
+      );
+    }
   }
-
-}
