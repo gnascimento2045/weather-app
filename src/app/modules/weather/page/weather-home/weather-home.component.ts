@@ -1,5 +1,6 @@
 import { WeatherService } from './../../services/weather.service';
 import { Component, OnInit } from '@angular/core';
+import { WeatherDatas } from 'src/app/models/interfaces/weather.interface';
 
 @Component({
   selector: 'app-weather-home',
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WeatherHomeComponent implements OnInit {
   initialCityName = 'São Paulo'
-  weatherDatas!:any;
+  weatherDatas!:WeatherDatas;
 
   constructor(private weatherService: WeatherService){}
 
@@ -19,7 +20,8 @@ export class WeatherHomeComponent implements OnInit {
   getWeatherDatas(cityName: string): void{
     this.weatherService.getWeatherDatas(cityName).subscribe({
       next: (response)=> {
-        console.log(response)
+        response && (this.weatherDatas = response);
+        console.log(this.weatherDatas)
       },
       error:(error) => console.log(error),
     });
